@@ -1,0 +1,7 @@
+{
+  "name": "Frontend-E2T2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
