@@ -1,0 +1,36 @@
+
+  <ion-content class="ion-padding">
+
+    <h2 class="section-title">Zitak</h2>
+
+    @for (a of appointments; track a.date) {
+      <div class="appt-card">
+
+        <!-- Date row -->
+        <div class="appt-header">
+          <span class="appt-date">{{ a.date }}</span>
+          <div class="appt-time-block">
+            <span class="appt-time">{{ a.time }}</span>
+            <span class="badge">{{ a.duration }}</span>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div class="services-label">Zerbitzuak:</div>
+        @for (s of a.services; track s.name) {
+          <div class="service-row">
+            <span>{{ s.name }}</span>
+            <span>{{ s.price }}€</span>
+          </div>
+        }
+
+        <hr class="divider" />
+        <div class="total-row">
+          <span>Totala:</span>
+          <strong>{{ a.total }}€</strong>
+        </div>
+
+      </div>
+    }
+
+  </ion-content>

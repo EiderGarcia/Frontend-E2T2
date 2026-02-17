@@ -1,0 +1,242 @@
+// .section-title {
+//   font-size: 1.3rem;
+//   font-weight: 600;
+//   margin-bottom: 12px;
+// }
+
+// .filters {
+//   display: flex;
+//   gap: 10px;
+//   overflow-x: auto;
+//   padding-bottom: 15px;
+
+//   scrollbar-width: none;
+//   -ms-overflow-style: none;
+// }
+
+// .filters::-webkit-scrollbar {
+//   display: none;
+// }
+
+// .chip {
+//   flex: 0 0 auto;
+//   white-space: nowrap;
+//   border-radius: 20px;
+//   padding: 8px 16px;
+//   background: #154f5e;
+//   color: #fefefe;
+//   cursor: pointer;
+  
+//   box-shadow:
+//     6px 6px 12px rgba(0, 0, 0, 0.25),
+//     -6px -6px 12px rgba(255, 255, 255, 0.08);
+
+//   transition: all 0.2s ease;
+// }
+
+
+// ion-chip {
+//   flex: 0 0 auto;
+//   white-space: nowrap;
+//   border-radius: 20px;
+//   padding: 6px 12px;
+//   background: #154f5e;
+//   color: #fefefe;
+//   cursor: pointer; 
+//   pointer-events: auto; 
+  
+//   box-shadow:
+//     6px 6px 12px rgba(0, 0, 0, 0.25),
+//     -6px -6px 12px rgba(255, 255, 255, 0.08);
+
+//   transition: all 0.2s ease;
+// }
+
+// ion-chip.active {
+//   box-shadow:
+//     inset 4px 4px 8px rgba(0, 0, 0, 0.25),
+//     inset -4px -4px 8px rgba(255, 255, 255, 0.08);
+
+//   background: #0f3f4a;
+// }
+
+// .service-card {
+//   background: #fefefe;
+//   padding: 14px 16px;
+//   border-radius: 18px;
+//   margin-bottom: 12px;
+//   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+// }
+
+// .service-info {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+// .schedule-card {
+//   background: #fefefe;
+//   border-radius: 20px;
+//   padding: 16px;
+// }
+
+// .schedule-card .row {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-bottom: 8px;
+// }
+
+// h2 {
+//   color: #0ea5a5;
+// }
+// .services-grid {
+//   display: grid;
+//   gap: 16px;
+
+//   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+// }
+// .service-card {
+//   background: #f7f7f7;
+//   border-radius: 20px;
+//   padding: 16px;
+//   margin-top:15px;
+//   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+// }
+
+// .service-info {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+// .category-pill {
+//   display: inline-block;
+//   margin-top: 8px;
+//   font-size: 0.75rem;
+//   padding: 4px 10px;
+//   border-radius: 12px;
+//   background: #154F5e;
+//   color: white;
+// }
+// ─── COLOUR TOKENS ────────────────────────────────────────────────
+// Defining colours once here makes it easy to change the theme later
+$teal-dark:   #0f3f4a;
+$teal:        #154f5e;
+$accent:      #0ea5a5;
+$surface:     #f7f7f7;
+$text-light:  #fefefe;
+$closed-grey: #aaa;
+
+// ─── SECTION TITLE ────────────────────────────────────────────────
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: $accent;
+  margin: 24px 0 12px;
+}
+
+// ─── SCHEDULE CARD ────────────────────────────────────────────────
+.schedule-card {
+  background: $surface;
+  border-radius: 20px;
+  padding: 16px;
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+
+    // Adds a subtle divider between rows (but not after the last one)
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  // "Itxita" text is greyed out to signal closed days at a glance
+  .closed {
+    color: $closed-grey;
+    font-weight: 400;
+  }
+}
+
+// ─── FILTER CHIPS ─────────────────────────────────────────────────
+.filters {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;       // horizontal scroll if chips overflow
+  padding-bottom: 15px;
+
+  // Hide the scrollbar visually (it still scrolls)
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.chip {
+  // reset browser button defaults first
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+
+  // your existing pill styles
+  flex: 0 0 auto;
+  white-space: nowrap;
+  border-radius: 20px;
+  padding: 8px 16px;
+  background: $teal;
+  color: $text-light;
+  transition: all 0.2s ease;
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.2),
+    -4px -4px 10px rgba(255, 255, 255, 0.06);
+
+  &.active {
+    background: $teal-dark;
+    box-shadow:
+      inset 4px 4px 8px rgba(0, 0, 0, 0.25),
+      inset -4px -4px 8px rgba(255, 255, 255, 0.08);
+  }
+}
+
+// ─── SERVICES GRID ────────────────────────────────────────────────
+.services-grid {
+  display: grid;
+  // auto-fit: fills columns automatically; min 160px, max stretch to fill
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.service-card {
+  background: $surface;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.service-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-name {
+  font-size: 0.95rem;
+}
+
+.service-price {
+  font-size: 1rem;
+  color: $accent;
+}
+
+// ─── CATEGORY PILL ────────────────────────────────────────────────
+.category-pill {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: $teal;
+  color: $text-light;
+}

@@ -1,0 +1,42 @@
+<div class="zerbitzuak-page">
+
+  <h2 class="section-title">Ordutegia</h2>
+  <div class="schedule-card">
+    @for (day of schedule; track day.name) {
+      <div class="row">
+        <span>{{ day.name }}</span>
+        <strong [class.closed]="!day.open">
+          {{ day.open ? day.hours : 'Itxita' }}
+        </strong>
+      </div>
+    }
+  </div>
+
+  <h2 class="section-title">Zerbitzuak</h2>
+  <div class="filters">
+    @for (cat of categories; track cat.value) {
+      <button
+        class="chip"
+        [class.active]="selectedCategory === cat.value"
+        (click)="selectCategory(cat.value)"
+      >
+        {{ cat.label }}
+      </button>
+    }
+  </div>
+
+  <div class="services-grid">
+    @for (service of filteredServices; track service.name) {
+      <div class="service-card">
+        <div class="service-info">
+          <span class="service-name">{{ service.name }}</span>
+          <strong class="service-price">{{ service.price }}€</strong>
+        </div>
+        @if (selectedCategory === 'all') {
+          <div class="category-pill">{{ getCategoryLabel(service.category) }}</div>
+        }
+      </div>
+    }
+  </div>
+
+</div>

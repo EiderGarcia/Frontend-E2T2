@@ -1,0 +1,27 @@
+<ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button class="addnew" (click)="onAdd()">Add New</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-grid>
+  <ion-row>
+    @for (col of columns; track col) {
+      <ion-col>{{ col }}</ion-col>
+    }
+    <ion-col>Actions</ion-col>
+  </ion-row>
+
+  @for (row of data; track row) {
+    @if (row) {
+      <ion-row>
+        @for (col of columns; track col) {
+          <ion-col>{{ row[col] }}</ion-col>
+        }
+        <ion-col>
+          <ion-button color="danger" (click)="onDelete(row)">Delete</ion-button>
+        </ion-col>
+      </ion-row>
+    }
+  }
+</ion-grid>

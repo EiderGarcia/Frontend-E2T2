@@ -1,0 +1,34 @@
+ion-toolbar {
+  --background: #368A9E;
+  --color:#fefefe;
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-top: 0;
+  --inner-padding-bottom: 0;
+}
+/* navbar.component.scss */
+ion-toolbar.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; /* above content */
+  --background: #368A9E;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+ion-toolbar.bottom-nav ion-button {
+  flex: 1; /* buttons stretch evenly */
+  --color: #fefefe;
+  text-align: center;
+}
+ion-tab-bar {
+  --background: #368A9E;
+  --color: #fefefe;
+  --selected-color: #154f5e;
+}
+
+ion-tab-button {
+  flex-direction: column;
+}

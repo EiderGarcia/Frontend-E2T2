@@ -1,0 +1,67 @@
+$teal:   #154f5e;
+$accent: #0ea5a5;
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $accent;
+  margin: 16px 0 12px;
+}
+
+.appt-card {
+  background: #f7f7f7;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.appt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.appt-date { font-weight: 600; }
+
+.appt-time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.appt-time { font-weight: 600; }
+
+.badge {
+  background: $accent;
+  color: #fff;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+}
+
+.services-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  color: #555;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}

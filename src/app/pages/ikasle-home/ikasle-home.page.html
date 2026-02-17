@@ -1,0 +1,10 @@
+<ion-content class="ion-padding">
+  <app-navbar (selectionChanged)="onNavbarSelect($event)"></app-navbar>
+
+  <app-table
+    [columns]="tableColumns"
+    [data]="tableData"
+    (add)="onAdd()"
+    (delete)="onDelete($event)">
+  </app-table>
+</ion-content>

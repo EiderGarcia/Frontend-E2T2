@@ -1,0 +1,30 @@
+
+    <h2 class="section-title">Historiala</h2>
+
+    @for (item of history; track item.date) {
+      <div class="history-card">
+
+        <div class="appt-header">
+          <span class="appt-date">{{ item.date }}</span>
+          <div class="appt-time-block">
+            <span class="appt-time">{{ item.time }}</span>
+            <span class="badge">{{ item.duration }}</span>
+          </div>
+        </div>
+
+        <div class="services-label">Zerbitzuak:</div>
+        @for (s of item.services; track s.name) {
+          <div class="service-row">
+            <span>{{ s.name }}</span>
+            <span>{{ s.price }}€</span>
+          </div>
+        }
+
+        <hr class="divider" />
+        <div class="total-row">
+          <span>Totala:</span>
+          <strong>{{ item.total }}€</strong>
+        </div>
+
+      </div>
+    }

@@ -1,0 +1,12 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    @for (btn of ikaslebuttons; track btn) {
+      <ion-button (click)="onSelect(btn.value)">
+        {{ btn.label }}
+      </ion-button>
+    }
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button (click)="logout()">Log Out</ion-button>
+  </ion-buttons>
+</ion-toolbar>

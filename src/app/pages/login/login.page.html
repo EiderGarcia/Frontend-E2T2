@@ -1,0 +1,62 @@
+<ion-content [fullscreen]="true">
+  <div class="min-h-screen flex items-center justify-center px-6">
+    <div class="w-full max-w-md">
+      <!-- Logo -->
+      <div class="flex justify-center mb-8">
+        <img
+          src="assets/Images/logo.png"
+          alt="Logo"
+          class="w-52 h-32 object-contain"
+        />
+      </div>
+
+      <!-- Form -->
+      <form (ngSubmit)="login()" class="space-y-4">
+        <!-- Email -->
+        <div class="flex flex-col">
+          <label for="email" class="mb-1 text-white font-semibold">Email</label>
+          <ion-item>
+            <ion-input
+              id="email"
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              required
+            >
+            </ion-input>
+          </ion-item>
+        </div>
+
+        <!-- Password -->
+        <div class="flex flex-col">
+          <label for="password" class="mb-1 text-white font-semibold"
+            >Pasahitza</label
+          >
+          <ion-item>
+            <ion-input
+              id="password"
+              type="password"
+              [(ngModel)]="password"
+              name="password"
+              required
+            >
+            </ion-input>
+          </ion-item>
+        </div>
+
+        <ion-button expand="block" type="submit"> Log In </ion-button>
+      </form>
+
+      <!-- OR separator -->
+      <div class="flex items-center my-4">
+        <hr class="flex-grow border-gray-300" />
+        <span class="mx-2 text-white font-semibold">EDO</span>
+        <hr class="flex-grow border-gray-300" />
+      </div>
+
+      <ion-button expand="block" class="mt-4" (click)="enterAsGuest()">
+        Sartu gonbidatu gisa
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

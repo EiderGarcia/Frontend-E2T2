@@ -1,0 +1,11 @@
+.addnew {
+  --background: #154f5e; /* main color */
+  --color: #fefefe;       /* text color */
+  border-radius: 25px !important;    /* rounded corners */
+  transition: background 0.2s; /* smooth hover effect */
+}
+
+.addnew:hover {
+  background: #1b6072;
+}
+

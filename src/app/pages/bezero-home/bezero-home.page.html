@@ -1,0 +1,30 @@
+<ion-content>
+  @if (activePage === 'dashboard') {
+    <app-bezero-zerbitzuak></app-bezero-zerbitzuak>
+  }
+  @if (activePage === 'zitak') {
+    <app-bezero-zitak></app-bezero-zitak>
+  }
+  @if (activePage === 'historiala') {
+    <app-bezero-historiala></app-bezero-historiala>
+  }
+
+  <div class="tab-bar">
+    <button class="tab-btn" [class.active]="activePage === 'dashboard'" (click)="setPage('dashboard')">
+      <ion-icon [icon]="zerbitzuIcon"></ion-icon>
+      <span>Zerbitzuak</span>
+    </button>
+    <button class="tab-btn" [class.active]="activePage === 'zitak'" (click)="setPage('zitak')">
+      <ion-icon [icon]="zitakIcon"></ion-icon>
+      <span>Zitak</span>
+    </button>
+    <button class="tab-btn" [class.active]="activePage === 'historiala'" (click)="setPage('historiala')">
+      <ion-icon [icon]="historyIcon"></ion-icon>
+      <span>Historiala</span>
+    </button>
+    <button class="tab-btn" (click)="logout()">
+      <ion-icon [icon]="logOutIcon"></ion-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+</ion-content>

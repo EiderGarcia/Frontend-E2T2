@@ -1,0 +1,38 @@
+<ion-content class="ion-padding">
+
+  <h2>Add {{ type === 'equipments' ? 'Equipment' : 'Consumable' }}</h2>
+
+  <ion-item>
+    <ion-label position="stacked">Name</ion-label>
+    <ion-input [(ngModel)]="name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Brand</ion-label>
+    <ion-input [(ngModel)]="brand"></ion-input>
+  </ion-item>
+
+  @if(type==='consumables'){
+  <ng-container >
+    <ion-item>
+      <ion-label position="stacked">Batch</ion-label>
+      <ion-input [(ngModel)]="batch"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Stock</ion-label>
+      <ion-input type="number" [(ngModel)]="stock"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Expiration Date</ion-label>
+      <ion-input type="date" [(ngModel)]="expiration_date"></ion-input>
+    </ion-item>
+  </ng-container>
+  }
+  <div class="ion-margin-top">
+    <ion-button expand="block" (click)="addEntry()">Add</ion-button>
+    <ion-button expand="block" color="medium" (click)="closeModal()">Cancel</ion-button>
+  </div>
+
+</ion-content>
