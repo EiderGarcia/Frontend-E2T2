@@ -1,48 +1,42 @@
-<ion-page>
-  <ion-content class="ion-padding">
+<div class="zerbitzuak-page">
+  <app-section-title text="Ordutegia"></app-section-title>
 
-    <h2 class="section-title">Ordutegia</h2>
+  <div class="schedule-card">
+    @for (day of schedule; track day.name) {
+      <div class="row">
+        <span>{{ day.name }}</span>
+        <strong [class.closed]="!day.open">
+          {{ day.open ? day.hours : 'Itxita' }}
+        </strong>
+      </div>
+    }
+  </div>
 
-    <div class="schedule-card">
-      @for (day of schedule; track day.name) {
-        <div class="row">
-          <span>{{ day.name }}</span>
-          <strong [class.closed]="!day.open">
-            {{ day.open ? day.hours : 'Itxita' }}
-          </strong>
-        </div>
-      }
-    </div>
+  <app-section-title text="Zerbitzuak"></app-section-title>
 
-    <h2 class="section-title">Zerbitzuak</h2>
+  <app-state-display
+    [loading]="loading"
+    [error]="error"
+    [empty]="services.length === 0"
+    emptyText="No services available.">
+  </app-state-display>
 
-    <!-- FILTER PILLS — now iterating objects, no pipe on .replace() -->
-    <div class="filters">
-      @for (cat of categories; track cat.value) {
-        <div
-          class="chip"
-          [class.active]="selectedCategory === cat.value"
-          (click)="selectCategory(cat.value)"
-        >
-          {{ cat.label }}
-        </div>
-      }
-    </div>
-
-    <!-- SERVICES GRID -->
+  @if (!loading && !error && services.length > 0) {
     <div class="services-grid">
-      @for (service of filteredServices; track service.name) {
+      @for (service of services; track service.id) {
         <div class="service-card">
           <div class="service-info">
             <span class="service-name">{{ service.name }}</span>
             <strong class="service-price">{{ service.price }}€</strong>
           </div>
-          @if (selectedCategory === 'all') {
-            <div class="category-pill">{{ getCategoryLabel(service.category) }}</div>
-          }
+          <div class="service-meta">
+            <span class="duration">{{ service.duration }} min</span>
+            @if (service.home_price) {
+              <span class="home-price">Etxean: {{ service.home_price }}€</span>
+            }
+          </div>
         </div>
       }
     </div>
-
-  </ion-content>
-</ion-page>
+  }
+</div>
