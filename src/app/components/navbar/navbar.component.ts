@@ -1,37 +1,42 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  IonButton,
-  IonToolbar,
-  IonButtons,
-} from '@ionic/angular/standalone';
+import { AuthService } from '../../services/API/auth';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  imports: [
-    IonButton,
-    IonToolbar,
-    IonButtons,
-  ],
+  imports: [],
 })
 export class NavbarComponent {
-  guestButtons: any;
-  constructor(private router: Router) {}
-
   @Input() position: 'top' | 'bottom' = 'top';
   @Output() selectionChanged = new EventEmitter<string>();
+
+  selectedValue = 'Groups';
+
   ikaslebuttons = [
-    { label: 'Equipments', value: 'equipments' },
-    { label: 'Consumables', value: 'consumables' },
-  ];
+  { label: 'Services',     value: 'services'     },
+  { label: 'Appointments', value: 'appointments' },
+  { label: 'Clients',      value: 'clients'      },
+  { label: 'Students',     value: 'students'     },
+  { label: 'Users',        value: 'users'        },
+  { label: 'Schedules',    value: 'schedules'    },
+  { label: 'Groups',       value: 'groups'       },
+  { label: 'Shifts',       value: 'shifts'       },
+];
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
   onSelect(value: string) {
+    this.selectedValue = value;
     this.selectionChanged.emit(value);
   }
+
   logout() {
-    localStorage.removeItem('userRole');
-    this.router.navigate(['/login']);
+    this.authService.logout();
+    this.router.navigate(['/'], { replaceUrl: true });
   }
 }

@@ -1,11 +1,132 @@
-.addnew {
-  --background: #154f5e; /* main color */
-  --color: #fefefe;       /* text color */
-  border-radius: 25px !important;    /* rounded corners */
-  transition: background 0.2s; /* smooth hover effect */
+$teal-dark: #0f3f4a;
+$teal:      #154f5e;
+$accent:    #0ea5a5;
+
+.table-container {
+  margin-top: 16px;
 }
 
-.addnew:hover {
-  background: #1b6072;
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
 }
 
+.table-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.title-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $accent;
+  display: inline-block;
+}
+
+.add-btn {
+  background: $teal;
+  color: #fefefe;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+
+  &:hover { background: $teal-dark; }
+  &:active { transform: scale(0.97); }
+}
+
+.table-wrapper {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background: $teal;
+}
+
+th {
+  padding: 13px 16px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: #f7fbfc; }
+
+  &.clickable {
+    cursor: pointer;
+    &:hover { background: #e8f5f7 !important; }
+  }
+}
+
+td {
+  padding: 13px 16px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 16px !important;
+  color: #aaa;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.edit-btn {
+  background: none;
+  border: 1px solid $accent;
+  color: $accent;
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover { background: $accent; color: #fff; }
+}
+
+.delete-btn {
+  background: none;
+  border: 1px solid #e05555;
+  color: #e05555;
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover { background: #e05555; color: #fff; }
+}

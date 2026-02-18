@@ -1,34 +1,97 @@
-ion-toolbar {
-  --background: #368A9E;
-  --color:#fefefe;
-  --padding-start: 0;
-  --padding-end: 0;
-  --inner-padding-top: 0;
-  --inner-padding-bottom: 0;
-}
-/* navbar.component.scss */
-ion-toolbar.bottom-nav {
-  position: fixed;
-  bottom: 0;
+$teal-dark: #0f3f4a;
+$teal:      #154f5e;
+$accent:    #0ea5a5;
+
+.navbar {
+  position: sticky;
+  top: 0;
   left: 0;
   right: 0;
-  z-index: 100; /* above content */
-  --background: #368A9E;
-  --padding-start: 0;
-  --padding-end: 0;
+  height: 56px;
+  background: $teal;
+  z-index: 50;
+  // subtle bottom shadow to lift it off the page
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
-ion-toolbar.bottom-nav ion-button {
-  flex: 1; /* buttons stretch evenly */
-  --color: #fefefe;
-  text-align: center;
-}
-ion-tab-bar {
-  --background: #368A9E;
-  --color: #fefefe;
-  --selected-color: #154f5e;
+.navbar-inner {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 
-ion-tab-button {
-  flex-direction: column;
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.nav-tab {
+  position: relative;
+  height: 100%;
+  padding: 0 18px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  // animated underline indicator
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    right: 18px;
+    height: 3px;
+    background: $accent;
+    border-radius: 3px 3px 0 0;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &.active {
+    color: #ffffff;
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  .logout-icon {
+    font-size: 1rem;
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #fff;
+
+    .logout-icon {
+      transform: translateX(3px);
+    }
+  }
 }

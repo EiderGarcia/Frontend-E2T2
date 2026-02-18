@@ -1,8 +1,19 @@
 ion-content {
-  --background: #368A9E;
+  --background: #368a9e;
 }
 
-ion-button{
-    --background: #154F5E ;
-    --color: #fefefe;
+ion-item {
+  --background: white;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+}
+
+ion-input {
+  --color: #333;
+}
+
+ion-button {
+  --background: #154f5e;
+  --border-radius: 14px;
+  font-weight: 600;
 }

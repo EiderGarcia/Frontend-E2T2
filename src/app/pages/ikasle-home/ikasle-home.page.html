@@ -1,10 +1,31 @@
-<ion-content class="ion-padding">
+<ion-content>
   <app-navbar (selectionChanged)="onNavbarSelect($event)"></app-navbar>
 
-  <app-table
-    [columns]="tableColumns"
-    [data]="tableData"
-    (add)="onAdd()"
-    (delete)="onDelete($event)">
-  </app-table>
+  <div class="page-content">
+    <app-table
+      [columns]="tableColumns"
+      [data]="tableData"
+      (add)="openAddModal()"
+      (edit)="openEditModal($event)"
+      (delete)="onDelete($event)"
+      (rowClick)="onRowClick($event)"
+      [showRowClick]="selectedTable === 'appointments'">
+    </app-table>
+  </div>
+
+  @if (showModal) {
+    <app-add-entry-modal
+      [type]="selectedTable"
+      [editData]="editingRow"
+      (closed)="onModalClosed()">
+    </app-add-entry-modal>
+  }
+
+  @if (showDetailModal && selectedAppointment) {
+    <app-appointment-modal
+      [appointment]="selectedAppointment"
+      (closed)="showDetailModal = false">
+    </app-appointment-modal>
+  }
+
 </ion-content>

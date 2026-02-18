@@ -1,18 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  IonButton,
-  IonInput,
-  IonItem,
-  IonContent,
-} from '@ionic/angular/standalone';
+import { IonButton, IonInput, IonItem, IonContent } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
-
-interface User {
-  email: string;
-  password: string;
-  role: string;
-}
+import { AuthService } from '../../services/API/auth';
 
 @Component({
   selector: 'app-login',
@@ -21,37 +11,46 @@ interface User {
   imports: [IonButton, IonInput, IonItem, IonContent, FormsModule],
 })
 export class LoginPage {
-  email: string = '';
+  username: string = '';
   password: string = '';
+  errorMessage: string = '';
 
-  users: User[] = [
-    { email: 'ikasle@email.com', password: '1234', role: 'ikasle' },
-    { email: 'bezero@email.com', password: '1234', role: 'bezero' },
-  ];
-
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   login() {
-    const user = this.users.find(
-      (u) => u.email === this.email && u.password === this.password,
-    );
+    this.errorMessage = '';
 
-    if (!user) {
-      alert('Invalid credentials');
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Please fill in all fields';
       return;
     }
 
-    localStorage.setItem('userRole', user.role);
+    this.authService.login(this.username, this.password).subscribe({
+      next: (user) => {
+        this.authService.saveUser(user);
 
-    if (user.role === 'ikasle') {
-      this.router.navigate(['/ikasle-home']);
-    } else if (user.role === 'bezero') {
-      this.router.navigate(['/bezero-home']);
-    }
+        if (user.rol === 'ikasle') {
+          this.router.navigate(['/ikasle-home'], { replaceUrl: true });
+        } else if (user.rol === 'bezero') {
+          this.router.navigate(['/bezero-home'], { replaceUrl: true });
+        } else {
+          this.errorMessage = 'Unknown role: ' + user.rol;
+        }
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          this.errorMessage = 'Invalid username or password';
+        } else {
+          this.errorMessage = 'Something went wrong, please try again';
+        }
+      }
+    });
   }
 
   enterAsGuest() {
-    console.log('Entering as guest');
     this.router.navigate(['/guest-home']);
   }
 }

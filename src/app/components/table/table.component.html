@@ -1,27 +1,46 @@
-<ion-toolbar>
-  <ion-buttons slot="end">
-    <ion-button class="addnew" (click)="onAdd()">Add New</ion-button>
-  </ion-buttons>
-</ion-toolbar>
+<div class="table-container">
 
-<ion-grid>
-  <ion-row>
-    @for (col of columns; track col) {
-      <ion-col>{{ col }}</ion-col>
-    }
-    <ion-col>Actions</ion-col>
-  </ion-row>
+  <div class="table-toolbar">
+    <div class="table-title">
+      <span class="title-dot"></span>
+      Entries
+    </div>
+    <button class="add-btn" (click)="onAdd()">+ Add New</button>
+  </div>
 
-  @for (row of data; track row) {
-    @if (row) {
-      <ion-row>
-        @for (col of columns; track col) {
-          <ion-col>{{ row[col] }}</ion-col>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          @for (col of columns; track col) {
+            <th>{{ col }}</th>
+          }
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (data.length === 0) {
+          <tr>
+            <td [attr.colspan]="columns.length + 1" class="empty-state">
+              No entries yet — add one above
+            </td>
+          </tr>
         }
-        <ion-col>
-          <ion-button color="danger" (click)="onDelete(row)">Delete</ion-button>
-        </ion-col>
-      </ion-row>
-    }
-  }
-</ion-grid>
+        @for (row of data; track row) {
+          @if (row) {
+            <tr [class.clickable]="showRowClick" (click)="onRowClick(row)">
+              @for (col of columns; track col) {
+                <td>{{ row[col] }}</td>
+              }
+              <td class="actions-cell" (click)="$event.stopPropagation()">
+                <button class="edit-btn" (click)="onEdit(row)">Edit</button>
+                <button class="delete-btn" (click)="onDelete(row)">Delete</button>
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>

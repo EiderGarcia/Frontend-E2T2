@@ -1,33 +1,140 @@
-@use 'tailwindcss/base';
+// ── VARIABLES ─────────────────────────────────────────────────────
+:root {
+  --teal-dark: #0f3f4a;
+  --teal:      #154f5e;
+  --accent:    #0ea5a5;
+  --surface:   #f7f7f7;
+  --text-light: #fefefe;
+}
 
-@use 'tailwindcss/components';
+// ── RESET ─────────────────────────────────────────────────────────
+* {
+  box-sizing: border-box;
+}
 
-@use 'tailwindcss/utilities';
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+// ── BADGE ─────────────────────────────────────────────────────────
+.badge {
+  background: #0ea5a5;
+  color: #fff;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+}
 
+// ── SCHEDULE CARD ─────────────────────────────────────────────────
+.schedule-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 16px;
 
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    &:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,0.06); }
+  }
 
-/* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+  .closed { color: #aaa; font-weight: 400; }
+}
 
-/* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+// ── FORM FIELDS ───────────────────────────────────────────────────
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
 
-/* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+  label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+  }
+
+  input,
+  select,
+  textarea {
+    border: 1.5px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    outline: none;
+    background: #fff !important;
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
+    font-family: inherit;
+    transition: border-color 0.2s;
+
+    &:focus { border-color: #0ea5a5; }
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #bbb !important;
+    -webkit-text-fill-color: #bbb !important;
+  }
+
+  select option {
+    color: #333;
+    background: #fff;
+  }
+}
+
+.checkbox-field {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 12px;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #0ea5a5;
+    padding: 0;
+    border: none;
+    background: none !important;
+    -webkit-text-fill-color: unset !important;
+  }
+}
+
+// ── MODAL ACTIONS ─────────────────────────────────────────────────
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  background: #f0f0f0;
+  color: #555;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+  &:hover { background: #e5e5e5; }
+}
+
+.btn-submit {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  background: #154f5e;
+  color: #fff;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+  &:hover { background: #0f3f4a; }
+}
+
+.error-msg {
+  color: #e05555;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}

@@ -1,62 +1,52 @@
-<ion-content [fullscreen]="true">
-  <div class="min-h-screen flex items-center justify-center px-6">
-    <div class="w-full max-w-md">
-      <!-- Logo -->
-      <div class="flex justify-center mb-8">
-        <img
-          src="assets/Images/logo.png"
-          alt="Logo"
-          class="w-52 h-32 object-contain"
-        />
-      </div>
+<ion-content fullscreen>
+  <div class="h-full flex flex-col justify-center px-6">
 
-      <!-- Form -->
-      <form (ngSubmit)="login()" class="space-y-4">
-        <!-- Email -->
-        <div class="flex flex-col">
-          <label for="email" class="mb-1 text-white font-semibold">Email</label>
-          <ion-item>
-            <ion-input
-              id="email"
-              type="email"
-              [(ngModel)]="email"
-              name="email"
-              required
-            >
-            </ion-input>
-          </ion-item>
-        </div>
-
-        <!-- Password -->
-        <div class="flex flex-col">
-          <label for="password" class="mb-1 text-white font-semibold"
-            >Pasahitza</label
-          >
-          <ion-item>
-            <ion-input
-              id="password"
-              type="password"
-              [(ngModel)]="password"
-              name="password"
-              required
-            >
-            </ion-input>
-          </ion-item>
-        </div>
-
-        <ion-button expand="block" type="submit"> Log In </ion-button>
-      </form>
-
-      <!-- OR separator -->
-      <div class="flex items-center my-4">
-        <hr class="flex-grow border-gray-300" />
-        <span class="mx-2 text-white font-semibold">EDO</span>
-        <hr class="flex-grow border-gray-300" />
-      </div>
-
-      <ion-button expand="block" class="mt-4" (click)="enterAsGuest()">
-        Sartu gonbidatu gisa
-      </ion-button>
+    <!-- Logo -->
+    <div class="flex justify-center mb-10">
+      <img
+        src="assets/Images/logo.png"
+        alt="Logo"
+        class="w-56 object-contain"
+      />
     </div>
+
+    <!-- Login form -->
+    <form (ngSubmit)="login()" class="space-y-5 max-w-md mx-auto w-full">
+
+      <div class="flex flex-col gap-1">
+        <label class="text-white text-sm font-semibold">Username</label>
+        <ion-item lines="none" class="rounded-xl overflow-hidden">
+          <ion-input
+            [(ngModel)]="username"
+            name="username"
+            type="text"
+            required>
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-white text-sm font-semibold">Pasahitza</label>
+        <ion-item lines="none" class="rounded-xl overflow-hidden">
+          <ion-input
+            [(ngModel)]="password"
+            name="password"
+            type="password"
+            required>
+          </ion-input>
+        </ion-item>
+      </div>
+
+      @if (errorMessage) {
+        <div class="text-red-200 text-sm text-center font-medium">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <ion-button expand="block" type="submit" size="large">
+        Log In
+      </ion-button>
+
+    </form>
   </div>
 </ion-content>

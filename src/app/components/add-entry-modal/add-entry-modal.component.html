@@ -1,38 +1,223 @@
-<ion-content class="ion-padding">
+<app-modal-wrapper
+  [title]="(isEdit ? 'Edit ' : 'Add ') + typeLabel"
+  (closed)="closeModal()">
 
-  <h2>Add {{ type === 'equipments' ? 'Equipment' : 'Consumable' }}</h2>
-
-  <ion-item>
-    <ion-label position="stacked">Name</ion-label>
-    <ion-input [(ngModel)]="name"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="stacked">Brand</ion-label>
-    <ion-input [(ngModel)]="brand"></ion-input>
-  </ion-item>
-
-  @if(type==='consumables'){
-  <ng-container >
-    <ion-item>
-      <ion-label position="stacked">Batch</ion-label>
-      <ion-input [(ngModel)]="batch"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Stock</ion-label>
-      <ion-input type="number" [(ngModel)]="stock"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Expiration Date</ion-label>
-      <ion-input type="date" [(ngModel)]="expiration_date"></ion-input>
-    </ion-item>
-  </ng-container>
+  @if (type === 'equipments') {
+    <div class="field">
+      <label>Izena</label>
+      <input [(ngModel)]="name" placeholder="Equipment name" />
+    </div>
+    <div class="field">
+      <label>Brand</label>
+      <input [(ngModel)]="brand" placeholder="Brand" />
+    </div>
   }
-  <div class="ion-margin-top">
-    <ion-button expand="block" (click)="addEntry()">Add</ion-button>
-    <ion-button expand="block" color="medium" (click)="closeModal()">Cancel</ion-button>
+
+  @if (type === 'consumables') {
+    <div class="field">
+      <label>Izena</label>
+      <input [(ngModel)]="name" placeholder="Consumable name" />
+    </div>
+    <div class="field">
+      <label>Brand</label>
+      <input [(ngModel)]="brand" placeholder="Brand" />
+    </div>
+    <div class="field">
+      <label>Batch</label>
+      <input [(ngModel)]="batch" placeholder="Batch code" />
+    </div>
+    <div class="field">
+      <label>Stock</label>
+      <input type="number" [(ngModel)]="stock" placeholder="0" />
+    </div>
+    <div class="field">
+      <label>Expiration Date</label>
+      <input type="date" [(ngModel)]="expiration_date" />
+    </div>
+  }
+
+  @if (type === 'services') {
+    <div class="field">
+      <label>Izena</label>
+      <input [(ngModel)]="name" placeholder="Service name" />
+    </div>
+    <div class="field">
+      <label>Price (€)</label>
+      <input type="number" [(ngModel)]="price" placeholder="0.00" />
+    </div>
+    <div class="field">
+      <label>Home Price (€)</label>
+      <input type="number" [(ngModel)]="home_price" placeholder="0.00" />
+    </div>
+    <div class="field">
+      <label>Duration (min)</label>
+      <input type="number" [(ngModel)]="duration" placeholder="30" />
+    </div>
+  }
+
+  @if (type === 'appointments') {
+    <div class="field">
+      <label>Izena</label>
+      <input [(ngModel)]="appt_name" placeholder="Appointment label" />
+    </div>
+    <div class="field">
+      <label>Seat</label>
+      <input type="number" [(ngModel)]="seat" placeholder="1" />
+    </div>
+    <div class="field">
+      <label>Date</label>
+      <input type="date" [(ngModel)]="date" />
+    </div>
+    <div class="field">
+      <label>Start Time</label>
+      <input type="time" [(ngModel)]="start_time" />
+    </div>
+    <div class="field">
+      <label>End Time</label>
+      <input type="time" [(ngModel)]="end_time" />
+    </div>
+    <div class="field">
+      <label>Client</label>
+      <select [(ngModel)]="client_id">
+        <option [ngValue]="undefined">Select a client</option>
+        @for (client of availableClients; track client.id) {
+          <option [ngValue]="client.id">
+            {{ client.name }} {{ client.surname }} — {{ client.phone }}
+          </option>
+        }
+      </select>
+    </div>
+    <div class="field">
+      <label>Comment</label>
+      <input [(ngModel)]="comment" placeholder="Optional comment" />
+    </div>
+  }
+
+  @if (type === 'clients') {
+    <div class="field">
+      <label>Izena</label>
+      <input [(ngModel)]="c_name" placeholder="Izena" />
+    </div>
+    <div class="field">
+      <label>Surname</label>
+      <input [(ngModel)]="c_surname" placeholder="Surname" />
+    </div>
+    <div class="field">
+      <label>Phone</label>
+      <input [(ngModel)]="c_phone" placeholder="Phone number" />
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="c_email" placeholder="Email" />
+    </div>
+    <div class="field checkbox-field">
+      <label>Home Client</label>
+      <input type="checkbox" [(ngModel)]="c_home_client" />
+    </div>
+  }
+
+  @if (type === 'students') {
+    <div class="field">
+      <label>Izena</label>
+      <input [(ngModel)]="s_name" placeholder="Izena" />
+    </div>
+    <div class="field">
+      <label>Surname</label>
+      <input [(ngModel)]="s_surname" placeholder="Surname" />
+    </div>
+  }
+
+  @if (type === 'users') {
+    <div class="field">
+      <label>Username</label>
+      <input [(ngModel)]="u_username" placeholder="Username" />
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="u_email" placeholder="Email" />
+    </div>
+    <div class="field">
+      <label>Role</label>
+      <select [(ngModel)]="u_rol">
+        <option value="">Select role</option>
+        <option value="ikasle">Ikasle</option>
+        <option value="bezero">Bezero</option>
+      </select>
+    </div>
+    @if (!isEdit) {
+      <div class="field">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="u_password" placeholder="Password" />
+      </div>
+    }
+  }
+
+  @if (type === 'schedules') {
+    <div class="field">
+      <label>Day (1=Mon, 7=Sun)</label>
+      <input type="number" [(ngModel)]="sc_day" min="1" max="7" placeholder="1" />
+    </div>
+    <div class="field">
+      <label>Start Date</label>
+      <input type="date" [(ngModel)]="sc_start_date" />
+    </div>
+    <div class="field">
+      <label>End Date</label>
+      <input type="date" [(ngModel)]="sc_end_date" />
+    </div>
+    <div class="field">
+      <label>Start Time</label>
+      <input type="time" [(ngModel)]="sc_start_time" />
+    </div>
+    <div class="field">
+      <label>End Time</label>
+      <input type="time" [(ngModel)]="sc_end_time" />
+    </div>
+    <div class="field">
+      <label>Group</label>
+      <select [(ngModel)]="sc_group_id">
+        <option [ngValue]="undefined">Select a group</option>
+        @for (group of availableGroups; track group.id) {
+          <option [ngValue]="group.id">{{ group.name }}</option>
+        }
+      </select>
+    </div>
+  }
+
+  @if (type === 'groups') {
+    <div class="field">
+      <label>Izena</label>
+      <input [(ngModel)]="g_name" placeholder="Group name" />
+    </div>
+  }
+
+  @if (type === 'shifts') {
+    <div class="field">
+      <label>Type</label>
+      <input [(ngModel)]="sh_type" placeholder="e.g. Garbitzaile (G), Ileapaindegi(I), Harrera(H)" maxlength="1" />
+    </div>
+    <div class="field">
+      <label>Student</label>
+      <select [(ngModel)]="sh_student_id">
+        <option [ngValue]="undefined">Select a student</option>
+        @for (student of availableStudents; track student.id) {
+          <option [ngValue]="student.id">
+            {{ student.name }} {{ student.surname }}
+          </option>
+        }
+      </select>
+    </div>
+  }
+
+  @if (errorMessage) {
+    <p class="error-msg">{{ errorMessage }}</p>
+  }
+
+  <div class="modal-actions">
+    <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+    <button class="btn-submit" (click)="submit()">
+      {{ isEdit ? 'Save' : 'Add' }}
+    </button>
   </div>
 
-</ion-content>
+</app-modal-wrapper>

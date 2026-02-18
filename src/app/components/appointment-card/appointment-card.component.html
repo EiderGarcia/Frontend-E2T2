@@ -1,0 +1,14 @@
+<div class="appt-card">
+  <div class="appt-header">
+    <span class="appt-date">{{ appointment.date }}</span>
+    <div class="appt-time-block">
+      <span class="appt-time">{{ appointment.start_time }}</span>
+      <span class="badge">{{ appointment.end_time }}</span>
+    </div>
+  </div>
+  <div class="appt-name">{{ appointment.name }}</div>
+  @if (appointment.comment) {
+    <div class="appt-comment">{{ appointment.comment }}</div>
+  }
+  <div class="appt-meta">Seat {{ appointment.seat }}</div>
+</div>

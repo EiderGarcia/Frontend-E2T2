@@ -1,0 +1,8 @@
+.state-msg {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  padding: 24px 0;
+
+  &.error { color: #e05555; }
+}

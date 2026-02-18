@@ -4,6 +4,7 @@ import { IonContent, IonIcon } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { logOutOutline, bookOutline, calendarOutline, cut } from 'ionicons/icons';
+import { AuthService } from '../../services/API/auth';  // ← add this
 
 import { BezeroZerbitzuakPage } from '../bezero-zerbitzuak/bezero-zerbitzuak.page';
 import { BezeroZitakPage } from '../bezero-zitak/bezero-zitak.page';
@@ -31,7 +32,10 @@ export class BezeroHomePage {
   historyIcon = bookOutline;
   zerbitzuIcon = cut;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService  // ← add this
+  ) {
     addIcons({ logOutOutline, bookOutline, calendarOutline, cut });
   }
 
@@ -40,7 +44,7 @@ export class BezeroHomePage {
   }
 
   logout() {
-    localStorage.removeItem('userRole');
-    this.router.navigate(['/']);
+    this.authService.logout();
+    this.router.navigate(['/'], { replaceUrl: true });
   }
 }

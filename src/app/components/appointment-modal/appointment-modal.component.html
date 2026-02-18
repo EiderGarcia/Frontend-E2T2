@@ -1,0 +1,47 @@
+<app-modal-wrapper title="Appointment Details" (closed)="close()">
+
+  <div class="info-grid">
+    <div class="info-item">
+      <span class="label">Date</span>
+      <span class="value">{{ appointment?.date }}</span>
+    </div>
+    <div class="info-item">
+      <span class="label">Seat</span>
+      <span class="value">{{ appointment?.seat }}</span>
+    </div>
+    <div class="info-item">
+      <span class="label">Start</span>
+      <span class="value">{{ appointment?.start_time }}</span>
+    </div>
+    <div class="info-item">
+      <span class="label">End</span>
+      <span class="value">{{ appointment?.end_time }}</span>
+    </div>
+    @if (appointment?.comment) {
+      <div class="info-item full-width">
+        <span class="label">Comment</span>
+        <span class="value">{{ appointment?.comment }}</span>
+      </div>
+    }
+  </div>
+
+  <h3 class="services-title">Services</h3>
+
+  <app-state-display
+    [loading]="loading"
+    [empty]="!loading && services.length === 0"
+    emptyText="No services linked to this appointment.">
+  </app-state-display>
+
+  @if (!loading && services.length > 0) {
+    <div class="services-list">
+      @for (s of services; track s.id) {
+        <div class="service-row">
+          <span class="service-name">{{ s.serviceName }}</span>
+          <span class="service-duration">{{ s.duration }} min</span>
+        </div>
+      }
+    </div>
+  }
+
+</app-modal-wrapper>

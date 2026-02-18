@@ -1,0 +1,41 @@
+.appt-card {
+  background: #f7f7f7;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.appt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.appt-date { font-weight: 600; }
+
+.appt-time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.appt-time { font-weight: 600; }
+
+.appt-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.appt-comment {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.appt-meta {
+  font-size: 0.8rem;
+  color: #aaa;
+}
