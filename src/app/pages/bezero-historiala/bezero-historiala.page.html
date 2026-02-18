@@ -1,30 +1,30 @@
+<div class="historiala-page">
 
-    <h2 class="section-title">Historiala</h2>
+  <h2 class="section-title">Historiala</h2>
 
-    @for (item of history; track item.date) {
+  @if (loading) {
+    <p class="state-msg">Loading...</p>
+  } @else if (error) {
+    <p class="state-msg error">{{ error }}</p>
+  } @else if (history.length === 0) {
+    <p class="state-msg">No past appointments.</p>
+  } @else {
+    @for (item of history; track item.id) {
       <div class="history-card">
-
         <div class="appt-header">
           <span class="appt-date">{{ item.date }}</span>
           <div class="appt-time-block">
-            <span class="appt-time">{{ item.time }}</span>
-            <span class="badge">{{ item.duration }}</span>
+            <span class="appt-time">{{ item.start_time }}</span>
+            <span class="badge">{{ item.end_time }}</span>
           </div>
         </div>
-
-        <div class="services-label">Zerbitzuak:</div>
-        @for (s of item.services; track s.name) {
-          <div class="service-row">
-            <span>{{ s.name }}</span>
-            <span>{{ s.price }}€</span>
-          </div>
+        <div class="appt-name">{{ item.name }}</div>
+        @if (item.comment) {
+          <div class="appt-comment">{{ item.comment }}</div>
         }
-
-        <hr class="divider" />
-        <div class="total-row">
-          <span>Totala:</span>
-          <strong>{{ item.total }}€</strong>
-        </div>
-
+        <div class="appt-meta">Seat {{ item.seat }}</div>
       </div>
     }
+  }
+
+</div>
